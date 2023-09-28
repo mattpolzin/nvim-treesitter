@@ -3,21 +3,15 @@
 (block
   (relation
     (relation_literal) @function.builtin
-    (identifier) @property))
+    (identifier) @constant))
 
 (block
   (permission
-    (permission_literal) @function.builtin
-    (identifier) @property))
+    (permission_literal) @variable.builtin
+    (identifier) @type))
 
 ; relations
-((relation_literal) @function.builtin)
-; TODO: ask Mike about appearing to capture permission identifier
-;       and relation identifier as new names
-(relation (identifier) @constant)
 (rel_expression (identifier) @property)
-
-((pipe_literal) @operator)
 
 (relation
   (rel_expression
@@ -25,12 +19,7 @@
      . (identifier) @constant)))
 
 ; permissions
-; NOTE: asked Mike about second capture of permission_literal
-((permission_literal) @function.builtin)
-(permission (identifier) @type)
 (perm_expression (identifier) @property)
-
-((plus_literal) @operator)
 
 (call_expression
   (selector_expression
@@ -40,12 +29,17 @@
   function: (selector_expression
     field: (field_identifier) @function.method))
 
-(permission
-  (perm_expression
-    ((stabby) @operator
-     . (identifier) @function)))
+(perm_expression
+  ((stabby) @operator
+   . (identifier) @function))
 
 ; misc
+[
+  (plus_literal)
+  (minus_literal)
+  (amp_literal)
+] @operator
+
 [
   (true)
   (false)
@@ -53,8 +47,8 @@
 ] @constant.builtin
 
 [
- (caveat_literal)
- (definition_literal)
+  (caveat_literal)
+  (definition_literal)
 ] @keyword
 
 [
