@@ -22,11 +22,8 @@
 (perm_expression (identifier) @property)
 
 (call_expression
-  (selector_expression
-    (identifier) @constant))
-
-(call_expression
   function: (selector_expression
+    operand: (identifier) @constant
     field: (field_identifier) @function.method))
 
 (perm_expression
@@ -38,6 +35,7 @@
   (plus_literal)
   (minus_literal)
   (amp_literal)
+  (pipe_literal)
 ] @operator
 
 [
